@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" ariaCurrentWhenActive="page">
+                        Movies
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a routerLink="/movie/popular" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                class="dropdown-item">Popular</a>
+                        </li>
+                        <li>
+                            <a routerLink="/movie/now_playing" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                class="dropdown-item">Now Playing</a>
+                        </li>
+                        <li><a routerLink="/movie/upcoming" routerLinkActive="active" class="dropdown-item">Upcoming</a>
+                        </li>
+                        <li><a routerLink="/movie/top_rated" routerLinkActive="active" class="dropdown-item">Top
+                                Rated</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" routerLinkActive="active" ariaCurrentWhenActive="page">
+                        TV Shows
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a routerLink='/tv/popular' routerLinkActive="active" class="dropdown-item">Popular</a>
+                        </li>
+                        <li>
+                            <a routerLink="/tv/airing_today" routerLinkActive="active" class="dropdown-item">Airing
+                                Today</a>
+                        </li>
+                        <li><a routerLink="/tv/on_the_air" routerLinkActive="active" class="dropdown-item">On TV</a>
+                        </li>
+                        <li><a routerLink="/tv/top_rated" routerLinkActive="active" class="dropdown-item">Top Rated</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <mat-form-field class="example-full-width" style="margin-right: 5rem;">
+            <input (keydown.enter)="onKeyDownEvent($event)" matInput placeholder="Search movies, tv's,people">
+        </mat-form-field>
+        <app-is-loged *ngIf="isLogged"></app-is-loged>
+        <div *ngIf="!isLogged" style="display: flex; gap: 0.5rem;">
+            <a mat-raised-button color="primary" href="https://www.themoviedb.org/signup" target="_blank"
+                style="text-decoration: none;">Register</a>
+            <button mat-raised-button color="primary" (click)="display()">
+                Login
+            </button>
+        </div>
+    </div>
+</nav>

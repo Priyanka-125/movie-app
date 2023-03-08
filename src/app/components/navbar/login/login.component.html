@@ -1,0 +1,46 @@
+<div class="container" style="height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;">
+
+    <form style="display: grid;
+    gap: 1rem;
+    /* border: 1px solid rgb(0 0 0); */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 0 0.2px black;" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div class="modal-header">
+            <h5 class="modal-title" id="Login">Login</h5>
+        </div>
+        <div class="modal-body">
+            <div class="input-group flex-nowrap">
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                    aria-describedby="addon-wrapping" formControlName="username" required>
+                <br>
+            </div>
+            <span *ngIf="username && username.invalid && username.touched" class="error text-danger">Username
+                field required</span>
+            <br>
+            <div class="input-group flex-nowrap">
+                <input [type]="show ? 'text' : 'password'" class="form-control" placeholder="Password"
+                    aria-label="Password" aria-describedby="addon-wrapping" formControlName="password" required>
+                <button class="input-group-text" type="button">
+                    <i class="fa fa-eye" aria-hidden="true" (click)="show = !show"></i>
+                </button>
+            </div>
+            <span *ngIf="username && username.invalid && username.touched" class="error text-danger">Password
+                field required</span>
+            <span class="error text-danger" *ngIf="error">{{error}}</span>
+        </div>
+        <div class="modal-footer" style="display: grid;">
+            <div>
+                <mat-checkbox [checked]="saveUser" (click)="checkBox()" style="margin-right: 1rem;"
+                    [color]="'primary'"></mat-checkbox>
+                <label class="form-check-label">
+                    Save username and password
+                </label>
+            </div>
+            <button [disabled]="loginForm.invalid" type="submit" mat-raised-button color="primary">Login</button>
+        </div>
+    </form>
+</div>

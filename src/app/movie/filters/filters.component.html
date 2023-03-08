@@ -1,0 +1,80 @@
+<aside class="aside">
+    <div class="filters">
+        <nav>
+            <ul>
+                <li>
+                    <span>Sort by:</span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select an option</mat-label>
+                        <mat-select #genr (selectionChange)="onSelected(genr.value)">
+                            <mat-option default value="popularity.desc">Popularity Descending</mat-option>
+                            <mat-option value="release_date.asc">Release Date Ascending</mat-option>
+                            <mat-option value="release_date.desc">Release Date Descending</mat-option>
+                            <mat-option value="vote_average.asc">Rating Ascending</mat-option>
+                            <mat-option value="vote_average.desc">Rating Descending</mat-option>
+                            <mat-option value="original_title.asc">Title (A-Z)</mat-option>
+                            <mat-option value="original_title.desc">Title (Z-A)</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Genres
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul style="display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.2rem;
+                        padding: 0;
+                        box-shadow: 0 -0.2px 0 0 black;
+                        padding-top: 0.5rem;">
+                            <li style="width: fit-content;" *ngFor="let genre of genres">
+                                <mat-chip-option color="accent"
+                                    (click)="getGenreId(genre.id)">{{genre.name}}</mat-chip-option>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                </li>
+                <li>Date
+                    From:
+                    <mat-form-field appearance="fill">
+                        <mat-label> {{FromDate|date:'MM/dd/yyyy'}}</mat-label>
+                        <input (dateInput)="OnDateChangeFrom($event.value)" matInput [matDatepicker]="pickerFrom">
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFrom></mat-datepicker>
+                    </mat-form-field>
+                    To:
+                    <mat-form-field appearance="fill">
+                        <mat-label> {{ToDate|date:'MM/dd/yyyy'}}</mat-label>
+                        <input (dateInput)="OnDateChangeTo($event.value)" matInput [matDatepicker]="pickerTo">
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTo [startAt]="ToDate"></mat-datepicker>
+                    </mat-form-field>
+                </li>
+                <li>User Score
+                    <mat-slider min="0" max="10" step="1" showTickMarks discrete>
+                        <input (change)="getUserScoreLeft($event)" thumbLabel matSliderStartThumb>
+                        <input (change)="getUserScoreRight($event)" thumbLabel matSliderEndThumb>
+                    </mat-slider>
+                </li>
+                <li>Minimum User Votes
+                    <mat-slider (change)="getUserVote($event)" min="0" max="500" step="50" showTickMarks discrete>
+                        <input matSliderThumb>
+                    </mat-slider>
+                </li>
+                <li>Runtime
+                    <mat-slider min="0" max="405" step="15" showTickMarks discrete>
+                        <input (change)="getRuntimeLeft($event)" thumbLabel matSliderStartThumb>
+                        <input (change)="getRuntimeRight($event)" thumbLabel matSliderEndThumb>
+                    </mat-slider>
+                </li>
+                <li>
+                    <button mat-flat-button color="primary" *ngIf="showFilterButton"
+                        (click)="collectValueFromFilter()">Filter</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

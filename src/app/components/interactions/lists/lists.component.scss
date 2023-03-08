@@ -1,0 +1,26 @@
+.lists-parent {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+
+    .lists-holder {
+        position: absolute;
+        right: -118px;
+        background: rgb(255 255 255);
+        border-radius: 8px;
+        height: 200px;
+        overflow-y: scroll;
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                padding: 5px 30px;
+                text-align: center;
+                width: 150px;
+                box-shadow: 0 0.1px 0 0 black;
+            }
+        }
+    }
+}
